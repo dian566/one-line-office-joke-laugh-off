@@ -16,6 +16,9 @@ def file_joke() -> None:
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as handle:
         handle.write(JOKE)
+    # Read back: the entry must be exactly the joke, no trailing newline.
+    if open("/output/entry.txt", encoding="utf-8").read() != JOKE:
+        raise ValueError("entry.txt does not match the joke exactly")
 
 
 if __name__ == "__main__":  # run it
